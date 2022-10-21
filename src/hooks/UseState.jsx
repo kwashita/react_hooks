@@ -1,42 +1,42 @@
 import React, { useState } from "react";
 
-export default function UseState(props) {
-  const [num, setNum] = useState(0);
-  const [count, setCount] = useState(0);
-  const [user, setUser] = useState({ name: "Lucy", age: 36 });
-  //initial value in conditions
-  const [value1, setValue1] = useState(() =>
-    props.initValue ? props.initValue : 5
-  );
+export default function UseState() {
+  const [count, setCount] = useState(() => {
+    //be used to complex operations in this way
+    // console.log("updated once in very first time");
+    return 4;
+  });
+  const [state, setState] = useState({ color: "blue", num: 10 });
+  const color = state.color;
+  const num = state.num;
 
-  const addCount = () => {
-    setCount(() => {
-      return count >= 3 ? count + 2 : count + 1;
-    });
+  const incrementCount = () => {
+    setCount((preCount) => preCount + 1);
+  };
+  const decrementCount = () => {
+    setCount((preCount) => preCount - 1);
   };
 
-  const changeUsername = () => {
-    setUser(() => {
+  const changeNum = () => {
+    setState((preState) => {
+      //   console.log("updated every time!!");
       return {
-        ...user,
-        name: "John",
+        ...state,
+        num: preState.num + 1,
       };
     });
   };
   return (
     <>
-      <div>UseState</div>
-      <p>{num}</p>
-      <button onClick={() => setNum(num + 1)}>add num</button>
+      <h2>UseState</h2>
+      <button onClick={decrementCount}>-</button>
+      <span> {count} </span>
+      <button onClick={incrementCount}>+</button>
       <hr />
-      <p>{count}</p>
-      <button onClick={addCount}>add Count in conditions</button>
-      <hr />
-      <p>{user.name}</p>
-      <p>{user.age}</p>
-      <button onClick={changeUsername}> change username</button>
-      <hr />
-      <p>{value1}</p>
+      <p>
+        {num} {color}
+        <button onClick={changeNum}>setNum</button>
+      </p>
     </>
   );
 }
