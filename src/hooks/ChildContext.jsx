@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
-import { ThemesContext } from "../themes";
+import { ThemesContext, useThemeContext } from "../hooks/ThemeContext";
 
 export default function ChildContext() {
-  const { light, dark } = useContext(ThemesContext);
-  // console.log(themes);
+  const { dark, themes, toggleDark } = useThemeContext();
+
   return (
     <>
-      <div>ChildContext</div>
-      <button style={dark}>styles from App</button>
+      <div style={dark ? themes.dark : themes.light}>ChildContext</div>
+      <button onClick={toggleDark}>change theme</button>
     </>
   );
 }

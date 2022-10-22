@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import UseState from "./hooks/UseState";
-import { ThemesContext, themes } from "./themes";
 import ParentContext from "./hooks/ParentContext";
 import UseEffect from "./hooks/UseEffect";
 import UseMemo from "./hooks/UseMemo";
 import UseRef from "./hooks/UseRef";
+import UseReducer from "./hooks/UseReducer";
+import { ThemeProvider } from "./hooks/ThemeContext";
 
 export default function App() {
   return (
@@ -13,16 +14,18 @@ export default function App() {
       <hr />
       {/* <UseState initValue={10}></UseState> */}
       <hr />
-      <ThemesContext.Provider value={themes}>
+      {/* <ThemeProvider>
         <ParentContext></ParentContext>
-      </ThemesContext.Provider>
+      </ThemeProvider> */}
+
       <hr />
-      ``
       {/* <UseEffect></UseEffect> */}
       <hr />
       {/* <UseMemo></UseMemo> */}
       <hr />
       {/* <UseRef></UseRef> */}
+      <hr />
+      <UseReducer></UseReducer>
     </>
   );
 }
